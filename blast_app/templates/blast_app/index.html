@@ -1,0 +1,7 @@
+<h3>Start a blast query</h3>
+<form action="{% url 'blast_app:blast_request' %}" method="post">
+{% csrf_token %}
+    <label>Your BLAST query: </label>
+    <input type="text" name="question_text" id="question_text" value="Try this">
+    <input type="submit" value="Submit">
+</form>
