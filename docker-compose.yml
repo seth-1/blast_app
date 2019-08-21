@@ -12,3 +12,23 @@ services:
       - "8000:8000"
     depends_on:
       - db
+  rabbitmq:
+    hostname: rabbit
+    image: rabbitmq:3-management
+    ports:
+      - "5672:5672"
+    environment:
+      - RABBITMQ_DEFAULT_USER=oryctolagus
+      - RABBITMQ_DEFAULT_PASS=cuniculus
+    depends_on:
+      - db
+      - web
+  celery:
+    build: .
+    command: celery -A blast_page worker --loglevel=info
+    volumes:
+      - .:/code
+    depends_on:
+      - db
+      - web
+      - rabbitmq
