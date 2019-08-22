@@ -1,12 +1,22 @@
 from django.db import models
 
-from django.utils import timezone
-from django.contrib.auth.models import User
 
-class BlastResult(models.Model):
+class BlastQuery(models.Model):
     query_id = models.CharField(max_length=200)
-    subject_id = models.CharField(max_length=200)
-    pub_date = models.DateTimeField('date published')
+    # query_sequence = models.TextField()
+    pub_date = models.DateTimeField('updated')
 
     def __str__(self):
         return self.query_id
+
+
+class BlastResult(models.Model):
+    query = models.ForeignKey(BlastQuery, on_delete=models.CASCADE)
+    # query_sequence = models.TextField()
+    subject_id = models.CharField(max_length=200)
+    sstart = models.IntegerField()
+    send = models.IntegerField()
+    # alignment_sequence = models.TextField()
+
+    def __str__(self):
+        return self.subject_id

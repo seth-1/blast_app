@@ -1,3 +1,12 @@
-<h3>Blast</h3>
+<h3>Blast for {{blastquery.query_id}}</h3>
 
-<p>Thanks for submitting a blast query</p>
+<ul>
+	{% for blastresult in blastquery.blastresult_set.all %}
+	<ul>
+		<li>{{blastresult.subject_id}}</li>
+		<li>{{blastresult.sstart}}</li>
+		<li>{{blastresult.send}}</li>
+	</ul>
+	
+	{% endfor %}
+</ul>

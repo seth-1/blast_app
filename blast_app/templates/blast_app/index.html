@@ -5,3 +5,15 @@
     <input type="text" name="question_text" id="question_text" value="Try this">
     <input type="submit" value="Submit">
 </form>
+
+<h3>BLAST jobs/results</h3>
+
+{% if blast_list %}
+    <ul>
+    {% for blastquery in blast_list %}
+        <li><a href="{% url 'blast_app:results' blastquery.id %}">{{ blastquery.query_id  }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No history of BLAST jobs.</p>
+{% endif %}
