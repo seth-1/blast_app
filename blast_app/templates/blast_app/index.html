@@ -1,19 +1,33 @@
-<h3>Start a blast query</h3>
-<form action="{% url 'blast_app:blast_request' %}" method="post">
-{% csrf_token %}
-    <label>Your BLAST query: </label>
-    <input type="text" name="question_text" id="question_text" value="Try this">
-    <input type="submit" value="Submit">
-</form>
+{% extends 'blast_app/base.html' %}
 
-<h3>BLAST jobs/results</h3>
+{% block title %}Blast test application{% endblock %}
 
-{% if blast_list %}
-    <ul>
-    {% for blastquery in blast_list %}
-        <li><a href="{% url 'blast_app:results' blastquery.id %}">{{ blastquery.query_id  }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No history of BLAST jobs.</p>
-{% endif %}
+{% block content %}
+
+<div class="content container">
+    <div class="row">
+        <div class="col-md-6">
+        	<h3>Start a blast query</h3>
+			<form action="{% url 'blast_app:blast_request' %}" method="post">
+			{% csrf_token %}
+			    <label>Your BLAST query: </label>
+			    <input type="text" name="dna_sequence" id="dna_sequence" value="Try this">
+			    <input type="submit" value="Submit">
+			</form>
+        </div>
+        <div class="col-md-6">
+        	<h3>BLAST jobs/results</h3>
+			{% if blast_list %}
+			    <ul>
+			    {% for blastquery in blast_list %}
+			        <li><a href="{% url 'blast_app:results' blastquery.id %}">User submission No. {{ blastquery.id  }}</a></li>
+			    {% endfor %}
+			    </ul>
+			{% else %}
+			    <p>No history of BLAST jobs.</p>
+			{% endif %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

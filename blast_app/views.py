@@ -1,3 +1,5 @@
+from pathlib import Path
+
 from django.http import HttpResponseRedirect
 # from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
@@ -6,6 +8,7 @@ from django.views import generic
 
 from .models import BlastQuery
 from .tasks import prepare_blast
+from .utils.dnatools import write_dna_seq
 
 
 class IndexView(generic.ListView):
@@ -16,7 +19,7 @@ class IndexView(generic.ListView):
         """Return last blast results."""
         return BlastQuery.objects.filter(
             pub_date__lte=timezone.now()
-        ).order_by('-pub_date')[:5]
+        ).order_by('-pub_date')[:10]
 
 
 class ResultsView(generic.DetailView):
@@ -25,7 +28,9 @@ class ResultsView(generic.DetailView):
 
 
 def blast_request(request):
-    question_text = request.POST.get("question_text", "")
+    dna_sequence = request.POST.get("dna_sequence", "")
+    write_dna_seq(dna_sequence, Path("blast_app/data"))
+
     prepare_blast.delay()
     # do blast here
     return HttpResponseRedirect(reverse('blast_app:index'))

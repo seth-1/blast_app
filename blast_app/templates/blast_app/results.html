@@ -1,12 +1,21 @@
-<h3>Blast for {{blastquery.query_id}}</h3>
+{% extends 'blast_app/base.html' %}
 
-<ul>
+{% block title %}Blast test application{% endblock %}
+
+{% block content %}
+<h3>Blast for {{blastquery.query_id}}</h3>
+<table style="width:100%">
+	<tr>
+		<th>Hit id</th>
+		<th>Alignment start</th>
+		<th>Alignment end</th>
+	</tr>
 	{% for blastresult in blastquery.blastresult_set.all %}
-	<ul>
-		<li>{{blastresult.subject_id}}</li>
-		<li>{{blastresult.sstart}}</li>
-		<li>{{blastresult.send}}</li>
-	</ul>
-	
+	<tr>
+		<td>{{blastresult.subject_id}}</td>
+		<td>{{blastresult.sstart}}</td> 
+		<td>{{blastresult.send}}</td>
+	</tr>
 	{% endfor %}
-</ul>
+</table>
+{% endblock %}

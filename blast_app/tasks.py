@@ -9,14 +9,9 @@ from .models import BlastQuery, BlastResult
 
 
 @shared_task
-def my_add_task(a, b):
-    return a + b
-
-
-@shared_task
-def prepare_blast(query='blast_app/data/test_sequence.fasta',
+def prepare_blast(query='blast_app/data/test_it_sequence.fasta',
                   db='blast_app/data/proteins.fasta', evalue=0.001):
-    query_id = query.split("/")[-1][:-6]
+    query_id = query.split("/")[-1][:-6]  # get a query name
     blast_query = BlastQuery(query_id=query_id,
                              pub_date=timezone.now())
     blast_query.save()
