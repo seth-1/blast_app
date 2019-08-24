@@ -6,6 +6,7 @@ from celery import shared_task
 from django.utils import timezone
 
 from .models import BlastQuery, BlastResult
+# TODO: use tmpdir
 
 
 @shared_task

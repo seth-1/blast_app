@@ -7,6 +7,7 @@ from django.urls import reverse
 # from django.views import generic
 
 from rest_framework import generics
+from rest_framework.decorators import api_view
 
 from .models import BlastQuery
 from .serializers import BlastQuerySerializer
@@ -40,9 +41,18 @@ class ResultsView(generics.RetrieveUpdateDestroyAPIView):
     # template_name = 'blast_app/results.html'
 
 
+@api_view(['POST'])
 def blast_request(request):
-    dna_sequence = request.POST.get("dna_sequence", "")
-    write_bio_seq(dna_sequence, Path("blast_app/data"))
+    # TODO modify here to fire blast
+    dna_sequence = request.data
+    # dna_sequence = request.POST.get("dna_sequence", "")
+    outfile = Path("blast_app/data").joinpath("tmp.fasta")
+    write_bio_seq(dna_sequence,
+                  bio_id="bio_id",
+                  seq_type="dna",
+                  bio_format="fasta",
+                  description="test_app",
+                  outfile=str(outfile))
 
     prepare_blast.delay()
     # do blast here

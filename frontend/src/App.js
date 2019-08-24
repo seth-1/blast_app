@@ -15,8 +15,24 @@ class NameForm extends React.Component {
     this.setState({value: event.target.value});
   }
 
-  handleSubmit(event) {
-    alert('A name was submitted: ' + this.state.value);
+  async handleSubmit(event) {
+    // alert('A name was submitted: ' + this.state.value);
+    const headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+
+    const options = {
+      method: 'POST',
+      headers,
+      body: JSON.stringify(this.state.value)
+    };
+
+    const request = new Request('http://localhost:8000/api/blast_request/', options);
+    const response = await fetch(request);
+    const status = response.status;
+
+    if (status === 201){
+      console.log("Enable update here.")
+    }
     // fetch('/api/form-submit-url', {
     //   method: 'POST',
     //   body: this.state.value,
@@ -29,8 +45,8 @@ class NameForm extends React.Component {
       <form onSubmit={this.handleSubmit}>
         <label>
           Dna sequence:
-          <input type="text" value={this.state.value} onChange={this.handleChange} />
         </label>
+          <textarea rows="4" cols="40" id="dna_input" type="text" value={this.state.value} onChange={this.handleChange} />
         <input type="submit" value="Submit" />
       </form>
     );
@@ -60,7 +76,7 @@ class App extends Component {
       <div>
         {this.state.blastruns.map(item => (
           <div>
-            <h3>{item.query_id}</h3>
+            <h3>Blast submission: {item.id}</h3>
             {item.results.map(sub => (
               <p>{sub}</p>
               ))}
@@ -73,6 +89,5 @@ class App extends Component {
 }
 
 // TODO: each child in list shold have unique key prop
-// TODO: BLAST submission field
 
 export default App;
