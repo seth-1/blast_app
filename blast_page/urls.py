@@ -18,6 +18,7 @@ from django.urls import include, path
 # from django.views.generic.base import TemplateView
 
 urlpatterns = [
-    path('blast_app/', include('blast_app.urls')),
+    path('api/', include('blast_app.urls')),
+    # path('blast_app/', include('blast_app.urls')),
     path('admin/', admin.site.urls),
 ]

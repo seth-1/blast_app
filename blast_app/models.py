@@ -11,7 +11,9 @@ class BlastQuery(models.Model):
 
 
 class BlastResult(models.Model):
-    query = models.ForeignKey(BlastQuery, on_delete=models.CASCADE)
+    query = models.ForeignKey(BlastQuery,
+                              related_name='results',
+                              on_delete=models.CASCADE)
     # query_sequence = models.TextField()
     subject_id = models.CharField(max_length=200)
     sstart = models.IntegerField()
@@ -19,4 +21,6 @@ class BlastResult(models.Model):
     # alignment_sequence = models.TextField()
 
     def __str__(self):
-        return self.subject_id
+        return "id: {}, start: {}, end: {}".format(self.subject_id,
+                                                   self.sstart,
+                                                   self.send)
