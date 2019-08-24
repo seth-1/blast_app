@@ -8,7 +8,7 @@ from django.views import generic
 
 from .models import BlastQuery
 from .tasks import prepare_blast
-from .utils.dnatools import write_dna_seq
+from .utils.seqtools import write_bio_seq
 
 
 class IndexView(generic.ListView):
@@ -29,7 +29,7 @@ class ResultsView(generic.DetailView):
 
 def blast_request(request):
     dna_sequence = request.POST.get("dna_sequence", "")
-    write_dna_seq(dna_sequence, Path("blast_app/data"))
+    st.write_bio_seq(dna_sequence, Path("blast_app/data"))
 
     prepare_blast.delay()
     # do blast here

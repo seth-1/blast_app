@@ -11,7 +11,8 @@
 			<form action="{% url 'blast_app:blast_request' %}" method="post">
 			{% csrf_token %}
 			    <label>Your BLAST query: </label>
-			    <input type="text" name="dna_sequence" id="dna_sequence" value="Try this">
+			    {# <input type="text" name="dna_sequence" id="dna_sequence" value="Try this"> #}
+			    <textarea rows="4" cols="40" name="dna_sequence" id="dna_sequence" value="Try this"></textarea>
 			    <input type="submit" value="Submit">
 			</form>
         </div>

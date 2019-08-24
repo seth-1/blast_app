@@ -4,10 +4,6 @@ th {
 td {
 	text-align: center;
 }
-input#dna_sequence {
-	width: 30%;
-	height: 20%
-}
 label {
 	vertical-align: top;
 }
