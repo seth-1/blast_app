@@ -5,12 +5,10 @@ from pathlib import Path
 from tempfile import TemporaryDirectory
 
 from django.test import TestCase
+from django.utils import timezone
 
+from .models import BlastQuery, BlastResult
 from .utils import seqtools as st
-
-# TODO: remove file, generally run in temp directory
-# Test BLAST in integration test
-# Test BLAST in unittest
 
 
 class SequenceToolsTest(unittest.TestCase):
@@ -35,4 +33,29 @@ class SequenceToolsTest(unittest.TestCase):
                              )
             os.path.isfile(str(outfile))
 
-    # check that file exists
+
+class BlastAppTest(TestCase):
+
+    @classmethod
+    def setUpTestData(cls):
+            blast_query = BlastQuery(query_id="Test_blast",
+                                     pub_date=timezone.now())
+            blast_query.save()
+            b = BlastResult(query=blast_query,
+                            subject_id="test_hit",
+                            sstart=10,
+                            send=30
+                            )
+            b.pub_date = timezone.now()
+            b.save()
+
+    def test_blast_query(self):
+        blast_query = BlastQuery.objects.get(id=1)
+        self.assertEqual(str(blast_query.query_id), "Test_blast")
+
+    def test_results(self):
+        blast_query = BlastQuery.objects.get(id=1)
+        results = blast_query.blastresult_set.all()[0]
+        self.assertEqual(results.subject_id, "test_hit")
+        self.assertEqual(results.sstart, 10)
+        self.assertEqual(results.send, 30)
