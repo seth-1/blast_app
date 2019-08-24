@@ -29,14 +29,11 @@ class NameForm extends React.Component {
     const request = new Request('http://localhost:8000/api/blast_request/', options);
     const response = await fetch(request);
     const status = response.status;
+    console.log(response.status)
 
     if (status === 201){
       console.log("Enable update here.")
     }
-    // fetch('/api/form-submit-url', {
-    //   method: 'POST',
-    //   body: this.state.value,
-    // });
     event.preventDefault();
   }
 

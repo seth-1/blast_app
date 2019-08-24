@@ -14,7 +14,7 @@ def clean_sequence(string):
     Removes newlins/ linebreaks and spaces that could
     be inserted by copy/pasting.
     """
-    return string.replace("\n", "").replace("\r", "").replace(" ", "")
+    return string.upper().replace("\n", "").replace("\r", "").replace(" ", "")
 
 
 def check_bio_characters(seq_string, seq_type):
