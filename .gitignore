@@ -1,4 +1,5 @@
-
+blast_app/migrations/0001_initial.py
+blast_app/migrations/0002_auto_20190825_1139.py
 *.DS_STORE
 # Byte-compiled / optimized / DLL files
 __pycache__/
