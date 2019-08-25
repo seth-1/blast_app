@@ -4,8 +4,9 @@ from django.urls import reverse
 # from django.utils import timezone
 # from django.views import generic
 
-from rest_framework import generics
+from rest_framework import generics, status
 from rest_framework.decorators import api_view
+from rest_framework.response import Response
 
 from .models import BlastQuery
 from .serializers import BlastQuerySerializer
@@ -43,4 +44,5 @@ def blast_request(request):
     dna_sequence = request.data
     prepare_blast.delay(seq=dna_sequence,
                         db='blast_app/data/proteins.fasta')
-    return HttpResponseRedirect(reverse('blast_app:index'))
+    return Response(status=status.HTTP_201_CREATED)
+    # return HttpResponseRedirect(reverse('blast_app:index'))

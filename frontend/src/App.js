@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 class NameForm extends React.Component {
@@ -28,8 +27,9 @@ class NameForm extends React.Component {
 
     const request = new Request('http://localhost:8000/api/blast_request/', options);
     const response = await fetch(request);
+    console.log(request)
     const status = response.status;
-    console.log(response.status)
+    console.log(status);
 
     if (status === 201){
       console.log("Enable update here.")
@@ -58,7 +58,6 @@ class App extends Component {
   async componentDidMount(){
       const res = await fetch('http://localhost:8000/api/?format=json');
       const blastruns = await res.json();
-      console.log(blastruns);
       this.setState({
         blastruns
       });
