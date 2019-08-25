@@ -2,7 +2,6 @@ from decimal import Decimal
 from pathlib import Path
 from tempfile import TemporaryDirectory
 
-
 from Bio.Blast.Applications import NcbiblastxCommandline
 
 from celery import shared_task
