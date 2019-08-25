@@ -140,3 +140,4 @@ STATIC_URL = '/static/'
 # CELERY config
 
 CELERY_BROKER_URL = 'pyamqp://oryctolagus:cuniculus@rabbitmq:5672//'
+CELERY_RESULT_BACKEND = 'db+postgresql://postgres:@db:5432'
