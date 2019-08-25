@@ -33,7 +33,7 @@ services:
       - web
       - rabbitmq
   reactfe:
-    build: frontend/
+    image: seth1/blastnreact:v1
     ports:
       - "80:80"
     depends_on:
