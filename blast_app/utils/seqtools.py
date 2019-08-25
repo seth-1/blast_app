@@ -1,12 +1,9 @@
-# import unittest
 import csv
 
 from Bio import SeqIO
 from Bio.Blast import NCBIXML
 from Bio.Seq import Seq
 from Bio.SeqRecord import SeqRecord
-
-# Nice to have: case id line/ multiple fasta formatted sequences
 
 BIO_CHARACTERS = {"dna": set("ATGC")}
 BIO_FORMATS = ["fasta"]
