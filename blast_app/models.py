@@ -5,7 +5,6 @@ from django.db import models
 
 class BlastQuery(models.Model):
     query_id = models.CharField(max_length=200)
-    # query_sequence = models.TextField()
     pub_date = models.DateTimeField('updated')
 
     def __str__(self):
