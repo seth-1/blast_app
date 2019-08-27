@@ -32,9 +32,3 @@ services:
       - db
       - web
       - rabbitmq
-  reactfe:
-    build: frontend/
-    ports:
-      - "80:80"
-    depends_on:
-      - web
