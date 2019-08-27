@@ -63,7 +63,7 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'blast_page.urls'
 
 CORS_ORIGIN_WHITELIST = [
-    '104.248.138.52:80'
+    ' http://104.248.138.52:80'
     # 'localhost:80'
 ]
 
