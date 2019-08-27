@@ -4,7 +4,7 @@ const BlastListBody = props => {
     const rows = props.blastData.map((row, index) => {
         return (
             <ul key={index}>
-            {row.id}
+            Blast query {row.id}:
             {row.results.map((sub, index) => (
               <li key={index}>{sub}</li>
               ))}

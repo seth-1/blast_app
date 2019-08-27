@@ -10,8 +10,8 @@ class App extends Component {
   };
 
   async componentDidMount(){
-      const res = await fetch('http://localhost:8000/api/?format=json');
-      // const res = await fetch('http://104.248.138.52:8000/api/?format=json');
+      // const res = await fetch('http://localhost:8000/api/?format=json');
+      const res = await fetch('http://104.248.138.52:8000/api/?format=json');
       const blast = await res.json();
       this.setState({
         blast

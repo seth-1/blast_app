@@ -3,9 +3,9 @@ version: '3'
 services:
   db:
     image: postgres
-  web:
+  api:
     build: .
-    command: python manage.py runserver 0.0.0.0:8000
+    command: uwsgi --http :8000 --module blast_page.wsgi
     volumes:
       - .:/code
     ports:
@@ -22,7 +22,7 @@ services:
       - RABBITMQ_DEFAULT_PASS=cuniculus
     depends_on:
       - db
-      - web
+      - api
   celery:
     build: .
     command: celery -A blast_page worker --loglevel=info
@@ -31,3 +31,7 @@ services:
     depends_on:
       - db
       - rabbitmq
+  web:
+    build: web
+    ports:
+     - "80:80"

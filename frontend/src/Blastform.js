@@ -30,8 +30,8 @@ class BlastForm extends Component {
       body: JSON.stringify(this.state.value)
     };
 
-    const request = new Request('http://localhost:8000/api/blast_request/', options);
-    // const request = new Request('http://104.248.138.52:8000/api/blast_request/', options);
+    // const request = new Request('http://localhost:8000/api/blast_request/', options);
+    const request = new Request('http://104.248.138.52:8000/api/blast_request/', options);
     const response = await fetch(request);
     const status = response.status;
 

@@ -21,7 +21,6 @@ def prepare_blast(seq, db, query_id="unknown", evalue=0.001):
 
             write_bio_seq(seq,
                           bio_id="bio_id",
-                          seq_type="dna",
                           bio_format="fasta",
                           description="test_app",
                           outfile=str(seq_file))

@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'ympr!!d2tfjl4tty%6pc4u8k28@szy22(63bqu^$$s4&)0y@jl'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 CORS_ORIGIN_ALLOW_ALL = True
@@ -63,7 +63,8 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'blast_page.urls'
 
 CORS_ORIGIN_WHITELIST = [
-    'http://localhost:80'
+    '104.248.138.52:80'
+    # 'localhost:80'
 ]
 
 TEMPLATES = [
