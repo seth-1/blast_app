@@ -30,5 +30,4 @@ services:
       - .:/code
     depends_on:
       - db
-      - web
       - rabbitmq
